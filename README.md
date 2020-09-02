@@ -1,2 +1,26 @@
-# afazer
-A to-do website project to practice and grow my webdev skills
+# Afazer
+A web page for self-organization with a simple am complete to-do list.
+
+# Motivation
+This project is a personal initiative to practice my skills and to maintain the habit of creating new things. The choice of app comes from a place of joy for organazation.
+
+# Tech used
+This project will include:
+- ReactJS
+- NodeJS
+- Firebase
+
+# Planned Features
+
+- [ ] Color choice
+- [ ] Description field
+- [ ] Tag system
+- [ ] Search field
+- [ ] Task reorganization
+- [ ] Account authentication ( Firebase )
+
+<br/>
+<br/>
+
+##### Creator 
+Gabriel Dantas: [Github](github.com/mnegabriel); [Instagram](instagram.com/mnegabriel)

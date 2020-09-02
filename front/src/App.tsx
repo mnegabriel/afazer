@@ -1,7 +1,7 @@
 import React from 'react';
 
-function App() {
+const App: React.FunctionComponent = () => {
   return <h1>Começando o app</h1>;
-}
+};
 
 export default App;
