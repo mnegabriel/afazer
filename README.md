@@ -9,6 +9,7 @@ This project will include:
 - ReactJS
 - NodeJS
 - Firebase
+- Typescript
 
 # Planned Features
 
@@ -18,6 +19,7 @@ This project will include:
 - [ ] Search field
 - [ ] Task reorganization
 - [ ] Account authentication ( Firebase )
+- [ ] Integration with Google Calendar
 
 <br/>
 <br/>
