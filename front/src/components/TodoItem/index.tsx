@@ -7,11 +7,13 @@ interface TodoItemProps {
     checked: boolean;
   };
   handleCheck: (id: number) => void;
+  handleRemove: (id: number) => void;
 }
 
 const TodoItem: React.FunctionComponent<TodoItemProps> = ({
   itemProps: { id, title, checked },
-  handleCheck, // wierd eslint problem
+  handleCheck,
+  handleRemove,
 }: TodoItemProps) => {
   return (
     <div className="todo__item">
@@ -21,6 +23,9 @@ const TodoItem: React.FunctionComponent<TodoItemProps> = ({
         onChange={() => handleCheck(id)}
       />
       <p>{title}</p>
+      <button type="button" onClick={() => handleRemove(id)}>
+        Apagar
+      </button>
     </div>
   );
 };

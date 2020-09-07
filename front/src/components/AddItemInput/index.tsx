@@ -4,7 +4,7 @@ interface AddItemProps {
   handleAdd: (newItem: string) => void;
 }
 
-const AddItem: React.FC<AddItemProps> = ({ handleAdd }: AddItemProps) => {
+const AddItemInput: React.FC<AddItemProps> = ({ handleAdd }: AddItemProps) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleKeyPress: (
@@ -13,6 +13,7 @@ const AddItem: React.FC<AddItemProps> = ({ handleAdd }: AddItemProps) => {
     if (e.keyCode === 13) {
       handleAdd(inputValue);
       // put the login here
+      setInputValue('');
     }
   };
 
@@ -30,4 +31,4 @@ const AddItem: React.FC<AddItemProps> = ({ handleAdd }: AddItemProps) => {
   );
 };
 
-export default AddItem;
+export default AddItemInput;
