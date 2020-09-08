@@ -12,9 +12,11 @@ const AddItemInput: React.FC<AddItemProps> = ({
   const [inputValue, setInputValue] = useState('');
 
   const addItem: () => void = () => {
-    handleAdd(inputValue);
-    // put the login here
-    setInputValue('');
+    if (inputValue !== '') {
+      handleAdd(inputValue);
+      // put the login here
+      setInputValue('');
+    }
   };
 
   const handleKeyPress: (
