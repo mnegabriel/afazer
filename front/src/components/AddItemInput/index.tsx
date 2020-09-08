@@ -2,19 +2,31 @@ import React, { useState } from 'react';
 
 interface AddItemProps {
   handleAdd: (newItem: string) => void;
+  removeChecked: () => void;
 }
 
-const AddItemInput: React.FC<AddItemProps> = ({ handleAdd }: AddItemProps) => {
+const AddItemInput: React.FC<AddItemProps> = ({
+  handleAdd,
+  removeChecked,
+}: AddItemProps) => {
   const [inputValue, setInputValue] = useState('');
+
+  const addItem: () => void = () => {
+    handleAdd(inputValue);
+    // put the login here
+    setInputValue('');
+  };
 
   const handleKeyPress: (
     e: React.KeyboardEvent<HTMLInputElement>,
   ) => void = e => {
     if (e.keyCode === 13) {
-      handleAdd(inputValue);
-      // put the login here
-      setInputValue('');
+      addItem();
     }
+  };
+
+  const handleAddButton: () => void = () => {
+    addItem();
   };
 
   return (
@@ -26,7 +38,12 @@ const AddItemInput: React.FC<AddItemProps> = ({ handleAdd }: AddItemProps) => {
         onChange={e => setInputValue(e.target.value)}
         onKeyDown={e => handleKeyPress(e)}
       />
-      <h3>{inputValue}</h3>
+      <button type="button" onClick={handleAddButton}>
+        Add Item
+      </button>
+      <button type="button" onClick={removeChecked}>
+        Remove Checked
+      </button>
     </>
   );
 };
