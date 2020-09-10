@@ -10,6 +10,7 @@ const AddItemInput: React.FC<AddItemProps> = ({
   removeChecked,
 }: AddItemProps) => {
   const [inputValue, setInputValue] = useState('');
+  const [confirmation, setConfirmation] = useState(false);
 
   const addItem: () => void = () => {
     if (inputValue !== '') {
@@ -31,6 +32,11 @@ const AddItemInput: React.FC<AddItemProps> = ({
     addItem();
   };
 
+  const confirmRemoval: () => void = () => {
+    removeChecked();
+    setConfirmation(false);
+  };
+
   return (
     <>
       <input
@@ -40,12 +46,31 @@ const AddItemInput: React.FC<AddItemProps> = ({
         onChange={e => setInputValue(e.target.value)}
         onKeyDown={e => handleKeyPress(e)}
       />
-      <button type="button" onClick={handleAddButton}>
-        Add Item
-      </button>
-      <button type="button" onClick={removeChecked}>
-        Remove Checked
-      </button>
+
+      {!confirmation ? (
+        <>
+          <button type="button" id="add-btn" onClick={handleAddButton}>
+            Add Item
+          </button>
+          <button
+            type="button"
+            id="rmv-checked-btn"
+            onClick={() => setConfirmation(true)}
+          >
+            Remove Checked
+          </button>
+        </>
+      ) : (
+        <>
+          <h4>Are you sure?</h4>
+          <button type="button" onClick={confirmRemoval}>
+            Yes
+          </button>
+          <button type="button" onClick={() => setConfirmation(false)}>
+            Go back
+          </button>
+        </>
+      )}
     </>
   );
 };
