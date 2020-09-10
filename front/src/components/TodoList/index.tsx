@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TodoItem from '../TodoItem';
 import AddItemInput from '../AddItemInput';
 //
@@ -11,6 +11,16 @@ interface ItemProps {
 
 const TodoList: React.FunctionComponent = () => {
   const [listData, setListData] = useState<ItemProps[]>([]);
+
+  useEffect(() => {
+    if (Object.prototype.hasOwnProperty.call(localStorage, 'listData')) {
+      setListData(JSON.parse(localStorage.getItem('listData') || '{}'));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('listData', JSON.stringify(listData));
+  }, [listData]);
 
   const handleCheck: (id: number) => void = id => {
     const newList = listData.map(item => {
