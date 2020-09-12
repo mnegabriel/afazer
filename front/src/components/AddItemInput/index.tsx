@@ -46,7 +46,6 @@ const AddItemInput: React.FC<AddItemProps> = ({
         onChange={e => setInputValue(e.target.value)}
         onKeyDown={e => handleKeyPress(e)}
       />
-
       {!confirmation ? (
         <>
           <button type="button" id="add-btn" onClick={handleAddButton}>

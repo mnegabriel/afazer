@@ -1,13 +1,7 @@
 import React from 'react';
-import TodoList from './components/TodoList';
+import MainPage from './components/MainPage';
+import './styles/global.css';
 
-const App: React.FunctionComponent = () => {
-  return (
-    <main>
-      <h1>Começando o app</h1>
-      <TodoList />
-    </main>
-  );
-};
+const App: React.FunctionComponent = () => <MainPage />;
 
 export default App;

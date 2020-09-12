@@ -1,0 +1,18 @@
+.todo__item{
+  display: flex;
+  width: 100%;
+  padding: 16px;
+  background: white;
+  border-radius: 10px;
+  align-items: center;
+}
+.todo__item > p {
+  flex: 1;
+  max-width: calc(100% - 84px);
+  overflow-wrap: break-word;
+}
+.todo__item > input {
+}
+.todo__item:not(:last-of-type){
+  margin-bottom: 10px;
+}

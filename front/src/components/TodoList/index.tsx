@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import TodoItem from '../TodoItem';
 import AddItemInput from '../AddItemInput';
 //
-// import todosData from '../../todosData';
+import './style.css';
+
 interface ItemProps {
   id: number;
   title: string;
