@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './styles.css';
 
 interface AddItemProps {
   handleAdd: (newItem: string) => void;
@@ -38,7 +39,7 @@ const AddItemInput: React.FC<AddItemProps> = ({
   };
 
   return (
-    <>
+    <div id="add-item-input">
       <input
         type="text"
         placeholder="+ Add new item"
@@ -49,28 +50,36 @@ const AddItemInput: React.FC<AddItemProps> = ({
       {!confirmation ? (
         <>
           <button type="button" id="add-btn" onClick={handleAddButton}>
-            Add Item
+            <span role="img" aria-label="plus">
+              ➕
+            </span>
           </button>
           <button
             type="button"
             id="rmv-checked-btn"
             onClick={() => setConfirmation(true)}
           >
-            Remove Checked
+            <span role="img" aria-label="trash">
+              🗑
+            </span>
           </button>
         </>
       ) : (
         <>
-          <h4>Are you sure?</h4>
-          <button type="button" onClick={confirmRemoval}>
-            Yes
+          <button type="button" id="confirm-btn" onClick={confirmRemoval}>
+            <span role="img" aria-label="tick">
+              ✔
+            </span>
           </button>
           <button type="button" onClick={() => setConfirmation(false)}>
-            Go back
+            <span role="img" aria-label="x">
+              ✖
+            </span>
           </button>
+          <h4>REMOVE ALL CHECKED?</h4>
         </>
       )}
-    </>
+    </div>
   );
 };
 

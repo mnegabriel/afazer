@@ -8,10 +8,12 @@
 }
 .todo__item > p {
   flex: 1;
-  max-width: calc(100% - 84px);
+  max-width: calc(100% - 88px);
   overflow-wrap: break-word;
+  padding-right: 8px;
 }
 .todo__item > input {
+  margin-right: 10px;
 }
 .todo__item:not(:last-of-type){
   margin-bottom: 10px;

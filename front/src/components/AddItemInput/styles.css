@@ -1,0 +1,25 @@
+#add-item-input {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+#add-item-input > input {
+  flex: 1;
+  padding: 0 6px;
+}
+#add-item-input > button {
+  margin-left: 3px;
+  padding: 9px 13px;
+}
+#add-item-input > #add-btn {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#add-item-input > h4 {
+  width: 100%;
+  text-align: right;
+}
+
+
