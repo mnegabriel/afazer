@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 18px;
-  margin-bottom: 18px;
+  padding-top: 18px;
+  padding-bottom: 18px;
 }
 #add-item-input > input {
   flex: 1;
@@ -12,6 +12,7 @@
 #add-item-input > button {
   margin-left: 3px;
   padding: 9px 13px;
+  font-size: 1.4rem;
 }
 #add-item-input > #add-btn {
   padding-left: 10px;
