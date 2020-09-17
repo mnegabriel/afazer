@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ModalTodo from '../ModalTodo';
+import { DescriptionIcon, EditIcon, TrashIcon } from '../ReactIcons';
 import './styles.css';
 
 interface TodoItemDeets {
@@ -29,23 +30,22 @@ const TodoItem: React.FunctionComponent<TodoItemProps> = ({
   };
 
   return (
-    <div className="todo__item">
+    <div className={checked ? 'todo__item checked' : 'todo__item'}>
       <input
         type="checkbox"
+        className={checked ? 'checked' : undefined}
         checked={checked}
         onChange={() => handleCheck(id)}
       />
-      <p>{title}</p>
-      {description && (
-        <span role="img" aria-label="description present">
-          🎪
-        </span>
-      )}
+      <p>
+        {description && <DescriptionIcon />}
+        {title}
+      </p>
       <button type="button" onClick={() => toggleModal()}>
-        Editar
+        <EditIcon />
       </button>
       <button type="button" onClick={() => handleRemove(id)}>
-        Apagar
+        <TrashIcon />
       </button>
       {isOpen && (
         <ModalTodo

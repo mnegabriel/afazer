@@ -1,20 +1,53 @@
-.todo__item{
-  display: flex;
-  width: 100%;
-  padding: 16px;
+.todo__item:not([class*='checked']){
   background: white;
-  border-radius: 10px;
-  align-items: center;
+  box-shadow: 0px -120px 0px -117px var(--blue3) inset;
+
 }
-.todo__item > p {
+
+.todo__item{
+  width: 100%;
+  min-width: 300px;
+  padding: 10px 23px;
+  border-radius: 30px;
+  display: flex;
+  gap: 13px;
+}
+
+.todo__item,
+.todo__item *{
+  transition: .3s;
+}
+
+.todo__item p {
   flex: 1;
-  max-width: calc(100% - 88px);
-  overflow-wrap: break-word;
-  padding-right: 8px;
+  overflow-wrap: anywhere;
 }
-.todo__item > input {
-  margin-right: 10px;
+.todo__item p div{
+  display: inline;
+  margin-right: 2px;
 }
+.todo__item p div *{
+  width:13px;
+}
+
 .todo__item:not(:last-of-type){
   margin-bottom: 10px;
+}
+
+
+
+input[class*='checked'] ~ * svg{
+  fill: var(--gray4);
+}
+input[class*='checked'] ~ * .trash svg{
+  fill: var(--red);
+}
+input[class='checked'] ~ p{
+  color: var(--gray4);
+}
+
+input,
+.edit,
+.trash{
+  cursor: pointer;
 }

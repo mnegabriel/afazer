@@ -41,6 +41,11 @@ body, input, button {
   color: var(--gray1);
 }
 
+button{
+  background: none;
+  border: none;
+}
+
 @media(min-width:700px){
   :root{
     font-size: 64.5%;
