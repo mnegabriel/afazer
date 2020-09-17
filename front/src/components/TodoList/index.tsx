@@ -8,6 +8,7 @@ interface ItemProps {
   id: number;
   title: string;
   checked: boolean;
+  description: string;
 }
 
 const TodoList: React.FunctionComponent = () => {
@@ -42,7 +43,7 @@ const TodoList: React.FunctionComponent = () => {
 
     const addedItemList = [
       ...listData,
-      { id: newIndex, title: newItem, checked: false },
+      { id: newIndex, title: newItem, checked: false, description: '' },
     ];
 
     setListData(addedItemList);
@@ -58,12 +59,27 @@ const TodoList: React.FunctionComponent = () => {
     setListData(unchecked);
   };
 
+  const handleUpdate: (
+    id: number,
+    title: string,
+    description: string,
+  ) => void = (id, title, description) => {
+    const itemUpdatedList = listData.map(item => {
+      if (item.id === id) {
+        return { ...item, title, description };
+      }
+      return item;
+    });
+    setListData(itemUpdatedList);
+  };
+
   const todoitems = listData.map(item => (
     <TodoItem
       key={item.id}
       itemProps={item}
       handleCheck={handleCheck}
       handleRemove={handleRemove}
+      handleUpdate={handleUpdate}
     />
   ));
 
