@@ -3,6 +3,8 @@ import { ReactSVG } from 'react-svg';
 import descriptionSVG from '../../assets/icons/description.svg';
 import editSVG from '../../assets/icons/edit.svg';
 import trashSVG from '../../assets/icons/trash.svg';
+import addSVG from '../../assets/icons/add.svg';
+import thumbsUpSVG from '../../assets/icons/thumbsUp.svg';
 import './styles.css';
 
 export const DescriptionIcon: React.FunctionComponent = () => (
@@ -15,6 +17,12 @@ export const EditIcon: React.FunctionComponent = () => (
 
 export const TrashIcon: React.FunctionComponent = () => (
   <ReactSVG src={trashSVG} className="trash icon" />
+  );
+
+export const AddIcon: React.FunctionComponent = () => (
+  <ReactSVG src={addSVG} className="add icon" />
 );
 
-// export default ReactIcons = () => <h1>test</h1>;
+export const ThumbsUpIcon: React.FunctionComponent = () => (
+  <ReactSVG src={thumbsUpSVG} className="thumbsUp icon" />
+);

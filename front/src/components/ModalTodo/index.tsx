@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 
+import './styles.css'
+
 interface ThisInfo {
   id: number;
   title: string;
@@ -36,24 +38,47 @@ const ModalTodo: React.FunctionComponent<ModalProps> = (props: ModalProps) => {
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDescription] = useState(description);
 
-  console.log('passada');
+  const modalStyles = {
+      content: {
+        height                : '80vh',
+        width                 : '60vw',
+        maxWidth              : '700px',
+        minWidth              : '350px',
+        paddingLeft           : '30px',
+        paddingRight          : '30px',
+        top                   : '50%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)',
+        borderRadius          : '40px'
+      }
+  }
+
   return (
-    <Modal isOpen={isOpen}>
-      <h1>test</h1>
-      <input value={newTitle} onChange={e => setNewTitle(e.target.value)} />
-      <textarea
-        value={newDescription}
-        onChange={e => setNewDescription(e.target.value)}
-      />
-      <button
-        type="button"
-        onClick={() => applySave(id, newTitle, newDescription)}
-      >
-        Save
-      </button>
-      <button type="button" onClick={() => toggleModal()}>
-        Close
-      </button>
+    <Modal style={modalStyles} isOpen={isOpen} >
+      <div className='modal'>
+
+
+        <input value={newTitle} onChange={e => setNewTitle(e.target.value)} size={1}/>
+        <textarea
+          placeholder='Add a description here...'
+          value={newDescription}
+          onChange={e => setNewDescription(e.target.value)}
+        />
+        <button
+          type="button"
+          className='save'
+          onClick={() => applySave(id, newTitle, newDescription)}
+        >
+          Save
+        </button>
+        <button className='close' type="button" onClick={() => toggleModal()}>
+          Close
+        </button>
+
+      </div>
     </Modal>
   );
 };

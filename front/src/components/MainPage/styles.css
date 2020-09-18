@@ -20,3 +20,9 @@ main {
   padding-top: 27px;
   border-top: 5px solid var(--blue1)
 }
+
+header *,
+main * {
+  max-width: 800px;
+  margin: 0 auto;
+}

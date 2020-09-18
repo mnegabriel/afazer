@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AddIcon, ThumbsUpIcon, TrashIcon } from '../ReactIcons';
 import './styles.css';
 
 interface AddItemProps {
@@ -52,7 +53,7 @@ const AddItemInput: React.FC<AddItemProps> = ({
         <>
           <button type="button" id="add-btn" onClick={handleAddButton}>
             <span role="img" aria-label="plus">
-              ➕
+              <AddIcon />
             </span>
           </button>
           <button
@@ -61,7 +62,7 @@ const AddItemInput: React.FC<AddItemProps> = ({
             onClick={() => setConfirmation(true)}
           >
             <span role="img" aria-label="trash">
-              🗑
+              <TrashIcon />
             </span>
           </button>
         </>
@@ -69,12 +70,12 @@ const AddItemInput: React.FC<AddItemProps> = ({
         <>
           <button type="button" id="confirm-btn" onClick={confirmRemoval}>
             <span role="img" aria-label="tick">
-              ✔
+              <ThumbsUpIcon />
             </span>
           </button>
-          <button type="button" onClick={() => setConfirmation(false)}>
+          <button type="button" id="decline-btn" onClick={() => setConfirmation(false)}>
             <span role="img" aria-label="x">
-              ✖
+              <ThumbsUpIcon />
             </span>
           </button>
           <h4>REMOVE ALL CHECKED?</h4>

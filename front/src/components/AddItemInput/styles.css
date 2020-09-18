@@ -22,5 +22,8 @@
   width: 100%;
   text-align: right;
 }
+#decline-btn{
+  transform: rotate(180deg);
+}
 
 
