@@ -14,10 +14,11 @@ This project will include:
 # Planned Features
 
 - [ ] Color choice
-- [ ] Description field
+- [x] Description field
 - [ ] Tag system
 - [ ] Search field
 - [ ] Task reorganization
+- [ ] Cloud Storage ( Firebase )
 - [ ] Account authentication ( Firebase )
 - [ ] Integration with Google Calendar
 

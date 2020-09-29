@@ -6,18 +6,22 @@ import CreateTodoItem from '../services/CreateTodoItem';
 const todoItemsRouter = Router();
 
 const todoItemsRepository = new TodoItemsRepository();
-const createTodoItem = new CreateTodoItem(todoItemsRepository);
 
 todoItemsRouter.get('/', (request, response) => {
   return response.json(todoItemsRepository.all());
 });
 
 todoItemsRouter.post('/', (request, response) => {
-  const { title } = request.body;
+  try {
+    const { title } = request.body;
 
-  const todoItem = createTodoItem.execute(title);
+    const createTodoItem = new CreateTodoItem(todoItemsRepository);
+    const todoItem = createTodoItem.execute(title);
 
-  return response.json(todoItem);
+    return response.json(todoItem);
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
+  }
 });
 
 todoItemsRouter.patch('/:id', (request, response) => {
