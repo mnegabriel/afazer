@@ -2,6 +2,9 @@ import { Router } from 'express';
 
 import TodoItemsRepository from '../repositories/TodoItemsRepository';
 import CreateTodoItem from '../services/CreateTodoItem';
+import ToggleItemCheck from '../services/ToggleItemCheck';
+import AlterItemContent from '../services/AlterItemContent';
+import DeleteItem from '../services/DeleteItem';
 
 const todoItemsRouter = Router();
 
@@ -24,15 +27,56 @@ todoItemsRouter.post('/', (request, response) => {
   }
 });
 
-todoItemsRouter.patch('/:id', (request, response) => {
-  const { id } = request.params;
+todoItemsRouter.patch('/:id/check', (request, response) => {
+  try {
+    const { id } = request.params;
 
-  const updatedItem = todoItemsRepository.toggleCheckItem(id);
+    const toggleItemCheck = new ToggleItemCheck(todoItemsRepository);
 
-  if (updatedItem !== null) {
+    const updatedItem = toggleItemCheck.execute(id);
+
     return response.json(updatedItem);
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
   }
-  return response.status(404).json({ error: 'item not found' });
+});
+
+todoItemsRouter.patch('/:id/content', (request, response) => {
+  try {
+    const { id } = request.params;
+    const { title, description } = request.body;
+
+    const alterItemContent = new AlterItemContent(todoItemsRepository);
+
+    const updatedItem = alterItemContent.execute({ id, title, description });
+
+    return response.json(updatedItem);
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
+  }
+});
+
+todoItemsRouter.delete('/:id', (request, response) => {
+  try {
+    const { id } = request.params;
+
+    const deleteItem = new DeleteItem(todoItemsRepository);
+    deleteItem.execute(id);
+
+    return response.json(200).json({ message: 'item deleted' });
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
+  }
+});
+
+todoItemsRouter.delete('/', (request, response) => {
+  try {
+    todoItemsRepository.eraseChecked();
+
+    return response.json(200).json({ message: 'Checked items deleted' });
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
+  }
 });
 
 export default todoItemsRouter;

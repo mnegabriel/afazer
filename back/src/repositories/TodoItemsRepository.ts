@@ -1,4 +1,5 @@
 import TodoItem from '../models/TodoItem';
+import todoItemsRouter from '../routes/todoitems.routes';
 
 class TodoItemsRepository {
   private todoItems: TodoItem[];
@@ -25,20 +26,32 @@ class TodoItemsRepository {
     return chosenItem || null;
   }
 
-  public toggleCheckItem(id: string): TodoItem | null {
-    const todoItem = this.findById(id);
-    if (todoItem) {
-      this.todoItems.map(item => {
-        if (item.id === id) {
-          return {
-            ...item,
-            checked: !item.checked,
-          };
-        }
-        return item;
-      });
+  public update(updatedItem: TodoItem): TodoItem {
+    const updatedList = this.todoItems.map(item => {
+      if (item.id === updatedItem.id) {
+        return updatedItem;
+      }
+      return item;
+    });
+
+    this.todoItems = updatedList;
+    return updatedItem;
+  }
+
+  public erase(id: string): void {
+    const newList = this.todoItems.filter(item => item.id !== id);
+
+    this.todoItems = newList;
+  }
+
+  public eraseChecked(): void {
+    const newList = this.todoItems.filter(item => item.checked === false);
+
+    if (newList === this.todoItems) {
+      throw Error('No cheked Items');
     }
-    return null;
+
+    this.todoItems = newList;
   }
 }
 
