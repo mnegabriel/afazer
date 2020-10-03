@@ -8,21 +8,31 @@ import thumbsUpSVG from '../../assets/icons/thumbsUp.svg';
 import './styles.css';
 
 export const DescriptionIcon: React.FunctionComponent = () => (
-  <ReactSVG src={descriptionSVG} className="description icon" />
+  <span role="img" aria-label="plus">
+    <ReactSVG src={descriptionSVG} className="description icon" />
+  </span>
 );
 
 export const EditIcon: React.FunctionComponent = () => (
-  <ReactSVG src={editSVG} className="edit icon" />
+  <span role="img" aria-label="plus">
+    <ReactSVG src={editSVG} className="edit icon" />
+  </span>
 );
 
 export const TrashIcon: React.FunctionComponent = () => (
-  <ReactSVG src={trashSVG} className="trash icon" />
-  );
+  <span role="img" aria-label="trash">
+    <ReactSVG src={trashSVG} className="trash icon" />
+  </span>
+);
 
 export const AddIcon: React.FunctionComponent = () => (
-  <ReactSVG src={addSVG} className="add icon" />
+  <span role="img" aria-label="tick">
+    <ReactSVG src={addSVG} className="add icon" />
+  </span>
 );
 
 export const ThumbsUpIcon: React.FunctionComponent = () => (
-  <ReactSVG src={thumbsUpSVG} className="thumbsUp icon" />
+  <span role="img" aria-label="x">
+    <ReactSVG src={thumbsUpSVG} className="thumbsUp icon" />
+  </span>
 );

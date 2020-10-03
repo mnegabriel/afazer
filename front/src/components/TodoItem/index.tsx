@@ -1,27 +1,21 @@
 import React, { useState } from 'react';
+//
 import ModalTodo from '../ModalTodo';
-import { DescriptionIcon, EditIcon, TrashIcon } from '../ReactIcons';
+import { EditIcon, TrashIcon } from '../ReactIcons';
+//
+import { TodoItemProps } from '../../Interfaces';
 import './styles.css';
+import Checkbox from '../Extra/Checkbox';
+import Button from '../Extra/Button';
 
-interface TodoItemDeets {
-  id: number;
-  title: string;
-  checked: boolean;
-  description: string;
-}
-
-interface TodoItemProps {
-  itemProps: TodoItemDeets;
-  handleCheck: (id: number) => void;
-  handleRemove: (id: number) => void;
-  handleUpdate: (id: number, title: string, description: string) => void;
-}
-
+//
 const TodoItem: React.FunctionComponent<TodoItemProps> = ({
-  itemProps: { id, title, checked, description },
-  handleCheck,
-  handleRemove,
-  handleUpdate,
+  itemProps: {
+    item: { id, title, checked, description },
+    handleCheck,
+    handleRemove,
+    handleUpdate,
+  },
 }: TodoItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -31,22 +25,12 @@ const TodoItem: React.FunctionComponent<TodoItemProps> = ({
 
   return (
     <div className={checked ? 'todo__item checked' : 'todo__item'}>
-      <input
-        type="checkbox"
-        className={checked ? 'checked' : undefined}
-        checked={checked}
-        onChange={() => handleCheck(id)}
-      />
-      <p>
-        {description && <DescriptionIcon />}
-        {title}
-      </p>
-      <button type="button" onClick={() => toggleModal()}>
-        <EditIcon />
-      </button>
-      <button type="button" onClick={() => handleRemove(id)}>
-        <TrashIcon />
-      </button>
+      <Checkbox ticked={checked} tickFunction={() => handleCheck(id)} />
+      {/* {description && <DescriptionIcon />} */}
+      <p>{title}</p>
+      <Button clickBtn={() => toggleModal()} child={<EditIcon />} />
+      <Button clickBtn={() => handleRemove(id)} child={<TrashIcon />} />
+
       {isOpen && (
         <ModalTodo
           thisInfo={{ id, title, description }}
