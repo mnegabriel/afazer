@@ -1,8 +1,8 @@
 import React from 'react'
 import { shallow, configure } from 'enzyme'
-import AddItemInput from '../components/AddItemInput'
 import Adapter from 'enzyme-adapter-react-16';
 import { Simulate } from 'react-dom/test-utils';
+import AddItemInput from '../components/layout/AddItemInput'
 
 configure({ adapter: new Adapter() });
 

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-//
 import Layout from './Layout';
-//
 import { ItemProps } from './Interfaces';
-//
-import './styles/global.css';
 
 const App: React.FunctionComponent = () => {
+  // ALL STATES
   const [listData, setListData] = useState<ItemProps[]>([]);
+  const [inputValue, setInputValue] = useState('');
+  const [confirmation, setConfirmation] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  // Initial setup
   useEffect(() => {
     if (Object.prototype.hasOwnProperty.call(localStorage, 'listData')) {
       setListData(JSON.parse(localStorage.getItem('listData') || '{}'));
@@ -19,7 +20,8 @@ const App: React.FunctionComponent = () => {
     localStorage.setItem('listData', JSON.stringify(listData));
   }, [listData]);
 
-  const handleCheck: (id: number) => void = id => {
+  // TODO LIST LOGIC ------------------------------------
+  function handleCheck(id: number) {
     const newList = listData.map(item => {
       if (item.id === id) {
         return {
@@ -30,9 +32,9 @@ const App: React.FunctionComponent = () => {
       return item;
     });
     setListData(newList);
-  };
+  }
 
-  const handleAdd: (title: string) => void = title => {
+  function handleAdd(title: string) {
     const newIndex =
       listData.length > 0 ? listData[listData.length - 1].id + 1 : 1;
 
@@ -42,27 +44,23 @@ const App: React.FunctionComponent = () => {
     ];
 
     setListData(addedItemList);
-  };
+  }
 
-  const handleRemove: (id: number) => void = id => {
+  function handleRemove(id: number) {
     const shorterList = listData.filter(item => item.id !== id);
     setListData(shorterList);
-  };
+  }
 
-  const removeChecked: () => void = () => {
+  function removeChecked() {
     const unchecked = listData.filter(item => item.checked === false);
     setListData(unchecked);
-  };
+  }
 
-  const handleUpdate: ({
+  function handleUpdate({
     id,
     title,
     description,
-  }: Omit<ItemProps, 'checked'>) => void = ({
-    id,
-    title,
-    description,
-  }: Omit<ItemProps, 'checked'>) => {
+  }: Omit<ItemProps, 'checked'>) {
     const itemUpdatedList = listData.map(item => {
       if (item.id === id) {
         return { ...item, title, description };
@@ -70,19 +68,45 @@ const App: React.FunctionComponent = () => {
       return item;
     });
     setListData(itemUpdatedList);
-  };
+  }
+  // TODO LIST LOGIC -- end ------------------------------
+
+  // INPUT LOGIC -----------------------------------------
+  function addItem() {
+    if (inputValue !== '') {
+      handleAdd(inputValue);
+      setInputValue('');
+    }
+  }
+
+  function confirmRemoval() {
+    removeChecked();
+    setConfirmation(false);
+  }
+
+  function toggleModal() {
+    setModalIsOpen(!modalIsOpen);
+  }
+  // INPUT LOGIC ------ end -------------------------------
 
   //
   return (
     <Layout
-      logic={{
-        listData,
-        handleAdd,
+      listData={listData}
+      todoListLogic={{
         handleCheck,
         handleRemove,
         handleUpdate,
-        removeChecked,
       }}
+      inputLogic={{
+        inputValue,
+        setInputValue,
+        addItem,
+        confirmation,
+        setConfirmation,
+        confirmRemoval,
+      }}
+      modalLogic={{ modalIsOpen, toggleModal }}
     />
   );
 };

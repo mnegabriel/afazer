@@ -1,3 +1,8 @@
+export interface AppDiv {
+  classes: string;
+  children?: React.ReactNode;
+}
+
 export interface ItemProps {
   id: number;
   title: string;
@@ -5,31 +10,36 @@ export interface ItemProps {
   description: string;
 }
 
-export interface AppProps {
-  logic: {
-    listData: ItemProps[];
-    handleAdd: (newItem: string) => void;
+export interface AppLogicProps {
+  listData: ItemProps[];
+  todoListLogic: {
     handleCheck: (id: number) => void;
     handleRemove: (id: number) => void;
     handleUpdate: (itemdeets: Omit<ItemProps, 'checked'>) => void;
-    removeChecked: () => void;
+    removeChecked?: () => void;
+  };
+  inputLogic: {
+    inputValue: string;
+    setInputValue: (inputValue: string) => void;
+    addItem: () => void;
+    confirmation: boolean;
+    setConfirmation: (confirmation: boolean) => void;
+    confirmRemoval: () => void;
+  };
+  modalLogic: {
+    modalIsOpen: boolean;
+    toggleModal: () => void;
   };
 }
 
 export interface TodoItemProps {
   itemProps: {
     item: ItemProps;
-    handleCheck: (id: number) => void;
-    handleRemove: (id: number) => void;
     handleUpdate: (itemdeets: Omit<ItemProps, 'checked'>) => void;
+    modalIsOpen: boolean;
+    toggleModal: () => void;
   };
+  children?: React.ReactNode;
 }
 
 export type UpdateItemProps = Omit<ItemProps, 'checked'>;
-
-export interface ModalProps {
-  thisInfo: Omit<ItemProps, 'checked'>;
-  isOpen: boolean;
-  toggleModal: () => void;
-  handleUpdate: (itemdeets: Omit<ItemProps, 'checked'>) => void;
-}

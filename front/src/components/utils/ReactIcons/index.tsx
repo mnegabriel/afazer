@@ -1,10 +1,10 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
-import descriptionSVG from '../../assets/icons/description.svg';
-import editSVG from '../../assets/icons/edit.svg';
-import trashSVG from '../../assets/icons/trash.svg';
-import addSVG from '../../assets/icons/add.svg';
-import thumbsUpSVG from '../../assets/icons/thumbsUp.svg';
+import descriptionSVG from '../../../assets/icons/description.svg';
+import editSVG from '../../../assets/icons/edit.svg';
+import trashSVG from '../../../assets/icons/trash.svg';
+import addSVG from '../../../assets/icons/add.svg';
+import thumbsUpSVG from '../../../assets/icons/thumbsUp.svg';
 import './styles.css';
 
 export const DescriptionIcon: React.FunctionComponent = () => (

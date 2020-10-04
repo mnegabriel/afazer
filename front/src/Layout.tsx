@@ -1,117 +1,136 @@
-import React, { useState } from 'react';
+import React from 'react';
 //
-import TodoList from './components/TodoList';
-import TodoItem from './components/TodoItem';
-import AddItemInput from './components/AddItemInput';
+import Afazer from './components/layout/Afazer';
+import Title from './components/layout/Title';
+import Header from './components/layout/Header';
+import BtnLogout from './components/layout/BtnLogout';
+import Main from './components/layout/Main';
+import TodoList from './components/layout/TodoList';
+import TodoItem from './components/layout/TodoItem';
+import AddItemInput from './components/layout/AddItemInput';
+import Footer from './components/layout/Footer';
+import Author from './components/layout/Author';
 //
-import Afazer from './components/Extra/Afazer';
-import Title from './components/Extra/Title';
-import Header from './components/Header';
-import BtnLogout from './components/Extra/BtnLogout';
-import Main from './components/Extra/Main';
-import Footer from './components/Extra/Footer';
-import Author from './components/Extra/Author';
+import Input from './components/utils/Input';
+import Button from './components/utils/Button';
+import Checkbox from './components/utils/Checkbox';
+import ModalTodo from './components/utils/ModalTodo';
+import {
+  AddIcon,
+  EditIcon,
+  ThumbsUpIcon,
+  TrashIcon,
+} from './components/utils/ReactIcons';
 //
-import { AppProps } from './Interfaces';
-import Input from './components/Extra/Input';
-import Button from './components/Extra/Button';
-import { AddIcon, ThumbsUpIcon, TrashIcon } from './components/ReactIcons';
+import { AppLogicProps } from './Interfaces';
 
-const Layout: React.FunctionComponent<AppProps> = ({
-  logic: {
-    listData,
-    handleAdd,
-    handleCheck,
-    handleRemove,
-    handleUpdate,
-    removeChecked,
+const Layout: React.FunctionComponent<AppLogicProps> = ({
+  listData,
+  todoListLogic: { handleCheck, handleRemove, handleUpdate },
+  inputLogic: {
+    inputValue,
+    setInputValue,
+    addItem,
+    confirmation,
+    setConfirmation,
+    confirmRemoval,
   },
-}: AppProps) => {
-  //
-  const todoItems = listData.map(item => (
-    <TodoItem
-      key={item.id}
-      itemProps={{ item, handleCheck, handleRemove, handleUpdate }}
-    />
-  ));
+  modalLogic: { modalIsOpen, toggleModal },
+}: AppLogicProps) => (
+  <>
+    <Afazer classes="">
+      <Header classes="">
+        <Title />
 
-  const [inputValue, setInputValue] = useState('');
-  const [confirmation, setConfirmation] = useState(false);
+        <BtnLogout />
+      </Header>
 
-  const addItem: () => void = () => {
-    if (inputValue !== '') {
-      handleAdd(inputValue);
-      setInputValue('');
-    }
-  };
+      <Main classes="">
+        <TodoList classes="">
+          {listData.map(item => {
+            const { id, title, checked } = item;
+            return (
+              <TodoItem
+                key={id}
+                classes={!checked ? 'todo__item' : 'todo__item checked'}
+              >
+                <Checkbox
+                  ticked={checked}
+                  tickFunction={() => handleCheck(id)}
+                />
 
-  const confirmRemoval: () => void = () => {
-    removeChecked();
-    setConfirmation(false);
-  };
+                <p>{title}</p>
 
-  //
-  return (
-    <>
-      <Afazer>
-        <Header>
-          <Title />
+                <Button clickBtn={() => toggleModal()} child={<EditIcon />} />
 
-          <BtnLogout />
-        </Header>
+                <Button
+                  clickBtn={() => handleRemove(id)}
+                  child={<TrashIcon />}
+                />
 
-        <Main>
-          <TodoList>{todoItems}</TodoList>
-
-          <AddItemInput>
-            <Input
-              thisValue={inputValue}
-              changeValue={setInputValue}
-              enterKeyFunction={addItem}
-            />
-            {
-              // all AddItemInput Buttons
-              !confirmation ? (
-                <>
-                  <Button
-                    idBtn="add-btn"
-                    clickBtn={addItem}
-                    child={<AddIcon />}
+                {modalIsOpen && (
+                  <ModalTodo
+                    itemProps={{
+                      item,
+                      handleUpdate,
+                      modalIsOpen,
+                      toggleModal,
+                    }}
                   />
+                )}
+              </TodoItem>
+            );
+          })}
+        </TodoList>
 
-                  <Button
-                    idBtn="rmv-checked-btn"
-                    clickBtn={() => setConfirmation(true)}
-                    child={<TrashIcon />}
-                  />
-                </>
-              ) : (
-                <>
-                  <Button
-                    idBtn="confirm-btn"
-                    clickBtn={confirmRemoval}
-                    child={<ThumbsUpIcon />}
-                  />
+        <AddItemInput classes="">
+          <Input
+            thisValue={inputValue}
+            changeValue={setInputValue}
+            enterKeyFunction={addItem}
+          />
+          {
+            // all AddItemInput Buttons
+            !confirmation ? (
+              <>
+                <Button
+                  idBtn="add-btn"
+                  clickBtn={addItem}
+                  child={<AddIcon />}
+                />
 
-                  <Button
-                    idBtn="decline-btn"
-                    clickBtn={() => setConfirmation(false)}
-                    child={<ThumbsUpIcon />}
-                  />
+                <Button
+                  idBtn="rmv-checked-btn"
+                  clickBtn={() => setConfirmation(true)}
+                  child={<TrashIcon />}
+                />
+              </>
+            ) : (
+              <>
+                <Button
+                  idBtn="confirm-btn"
+                  clickBtn={confirmRemoval}
+                  child={<ThumbsUpIcon />}
+                />
 
-                  <h4>REMOVE ALL CHECKED?</h4>
-                </>
-              )
-            }
-          </AddItemInput>
-        </Main>
+                <Button
+                  idBtn="decline-btn"
+                  clickBtn={() => setConfirmation(false)}
+                  child={<ThumbsUpIcon />}
+                />
 
-        <Footer>
-          <Author />
-        </Footer>
-      </Afazer>
-    </>
-  );
-};
+                <h4>REMOVE ALL CHECKED?</h4>
+              </>
+            )
+          }
+        </AddItemInput>
+      </Main>
+
+      <Footer classes="">
+        <Author />
+      </Footer>
+    </Afazer>
+  </>
+);
 
 export default Layout;
