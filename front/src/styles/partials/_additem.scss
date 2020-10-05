@@ -1,0 +1,13 @@
+.additem{
+  display: flex;
+  height: 40px;
+  input{
+    padding: 0 12px;
+    background-color      :inherit;
+    border: 1px solid gray;
+    flex: 1;
+  }
+  button {
+    padding: 0 20px;
+  }
+}

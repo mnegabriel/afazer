@@ -16,10 +16,7 @@
       "desc desc"
       "desc desc"
       "desc desc"
-      "desc desc"
-      "btns btns"
       "btns btns";
-  row-gap               : 50px;
   padding               : 30px;
   .title                { grid-area: title; }
   .description          { grid-area: desc; }
@@ -55,23 +52,18 @@
   h2 {
     border-bottom: 3px solid rgba(255, 255, 255, 0.137);
     padding-bottom: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     opacity: .5;
   }
   & *:last-child{
     flex                  : 1;
-    background-color      : black;
+    background-color      : inherit;
     color: white;
     border: none;
     resize: none;
   }
 }
 
-.title{
-  input{
-    font-size:3rem;
-  }
-}
 .buttons{
   gap: 40px;
   * {

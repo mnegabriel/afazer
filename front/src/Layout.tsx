@@ -86,7 +86,11 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
           <ModalTodo isOpen={modalIsOpen}>
             <section className="title">
               <h2>Title</h2>
-              <Input thisValue={modalTitle} changeValue={setModalTitle} />
+              {/* <Input thisValue={modalTitle} changeValue={setModalTitle} /> */}
+              <textarea
+                value={modalTitle}
+                onChange={e => setModalTitle(e.target.value)}
+              />
             </section>
 
             <section className="description">
@@ -112,15 +116,14 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
                     id: modalId,
                     title: modalTitle,
                     description: modalDescription,
-                  })
-                }
+                  })}
                 child={<p>Save</p>}
               />
             </section>
           </ModalTodo>
         </TodoList>
 
-        <AddItemInput classes="">
+        <AddItemInput classes="additem">
           <Input
             thisValue={inputValue}
             changeValue={setInputValue}
