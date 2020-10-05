@@ -118,26 +118,128 @@ main {
 }
 
 .modal {
-  z-index: 100;
-  height: 100vh;
+  height: 0;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.973);
-  border-left: 5px solid var(--purple1);
+  z-index: 100;
+  background-color: transparent;
+  border: none;
+  visibility: hidden;
   position: absolute;
   top: 0;
   right: 0;
-  -webkit-transition: .2s ease, opacity 1s ease;
-  transition: .2s ease, opacity 1s ease;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "title title" "desc desc" "desc desc" "desc desc" "desc desc" "btns btns" "btns btns";
+  row-gap: 50px;
+  padding: 30px;
 }
 
-.closed {
-  height: 0;
-  background-color: transparent;
-  border: none;
+.modal .title {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: title;
 }
 
-.closed > * {
-  display: none;
+.modal .description {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 4;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: desc;
+}
+
+.modal .buttons {
+  -ms-grid-row: 6;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: btns;
+}
+
+.modal * {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   opacity: 0;
+  visibility: hidden;
+  -webkit-transition: 0;
+  transition: 0;
+}
+
+.opened {
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.973);
+  border-left: 5px solid var(--purple1);
+  visibility: visible;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+  -webkit-transition-delay: .2s;
+          transition-delay: .2s;
+}
+
+.opened * {
+  opacity: 1;
+  -webkit-transition: .3s .4s ease;
+  transition: .3s .4s ease;
+  visibility: visible;
+  -webkit-transition-delay: 0;
+          transition-delay: 0;
+}
+
+.title,
+.description {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.title h2,
+.description h2 {
+  border-bottom: 3px solid rgba(255, 255, 255, 0.137);
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+  opacity: .5;
+}
+
+.title *:last-child,
+.description *:last-child {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background-color: black;
+  color: white;
+  border: none;
+  resize: none;
+}
+
+.title input {
+  font-size: 3rem;
+}
+
+.buttons {
+  gap: 40px;
+}
+
+.buttons * {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.buttons #close {
+  border: 1px solid gray;
+}
+
+.buttons #save {
+  background-color: gray;
+  color: black;
 }
 /*# sourceMappingURL=styling.css.map */

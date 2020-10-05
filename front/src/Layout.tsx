@@ -84,31 +84,39 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
           })}
 
           <ModalTodo isOpen={modalIsOpen}>
-            <Input thisValue={modalTitle} changeValue={setModalTitle} />
+            <section className="title">
+              <h2>Title</h2>
+              <Input thisValue={modalTitle} changeValue={setModalTitle} />
+            </section>
 
-            <textarea
-              placeholder="Add a description here..."
-              value={modalDescription}
-              onChange={e => setModalDescription(e.target.value)}
-            />
+            <section className="description">
+              <h2>Description</h2>
+              <textarea
+                placeholder="Add a description here..."
+                value={modalDescription}
+                onChange={e => setModalDescription(e.target.value)}
+              />
+            </section>
 
-            <Button
-              idBtn="save"
-              clickBtn={() =>
-                applySave({
-                  id: modalId,
-                  title: modalTitle,
-                  description: modalDescription,
-                })
-              }
-              child={<p>Save</p>}
-            />
+            <section className="buttons">
+              <Button
+                idBtn="close"
+                clickBtn={() => closeModal()}
+                child={<p>Close</p>}
+              />
 
-            <Button
-              idBtn="close"
-              clickBtn={() => closeModal()}
-              child={<p>Close</p>}
-            />
+              <Button
+                idBtn="save"
+                clickBtn={() =>
+                  applySave({
+                    id: modalId,
+                    title: modalTitle,
+                    description: modalDescription,
+                  })
+                }
+                child={<p>Save</p>}
+              />
+            </section>
           </ModalTodo>
         </TodoList>
 

@@ -1,21 +1,91 @@
 .modal{
-  z-index: 100;
-  height: 100vh;
-  width: 100vw;
-  background-color    : rgba(0, 0, 0, 0.973);
-  border-left         : 5px solid var(--purple1);
-  position            : absolute;
-  top                 : 0;
-  right               : 0;
-  transition          : .2s ease, opacity 1s ease;
+  height                : 0;
+  width                 : 100vw;
+  z-index               : 100;
+  background-color      : transparent;
+  border                : none;
+  visibility            : hidden;
+  position              : absolute;
+  top                   : 0;
+  right                 : 0;
+  transition            : .3s ease;
+
+  display               : grid;
+  grid-template-areas:
+      "title title"
+      "desc desc"
+      "desc desc"
+      "desc desc"
+      "desc desc"
+      "btns btns"
+      "btns btns";
+  row-gap               : 50px;
+  padding               : 30px;
+  .title                { grid-area: title; }
+  .description          { grid-area: desc; }
+  .buttons              { grid-area: btns; }
+
+  * {
+    display             : flex;
+    opacity             : 0;
+    visibility          : hidden;
+    transition          : 0;
+  }
 }
-.closed{
-  height:0;
-  background-color: transparent;
-  border:none;
-  > * {
-    display: none;
-    opacity: 0;
+
+.opened{
+  height                : 100vh;
+  background-color      : rgba(0, 0, 0, 0.973);
+  border-left           : 5px solid var(--purple1);
+  visibility            : visible;
+  transition            : .3s ease;
+  transition-delay      : .2s;
+  * {
+    opacity             : 1;
+
+    transition          : .3s .4s ease;
+    visibility          : visible;
+    transition-delay      : 0;
+  }
+}
+
+.title,
+.description{
+  flex-direction    : column;
+  h2 {
+    border-bottom: 3px solid rgba(255, 255, 255, 0.137);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    opacity: .5;
+  }
+  & *:last-child{
+    flex                  : 1;
+    background-color      : black;
+    color: white;
+    border: none;
+    resize: none;
+  }
+}
+
+.title{
+  input{
+    font-size:3rem;
+  }
+}
+.buttons{
+  gap: 40px;
+  * {
+    justify-content: space-around;
+    align-items: center;
+    width:100%;
+    height:100%;
+  }
+  #close{
+    border: 1px solid gray
+  }
+  #save {
+    background-color: gray;
+    color: black;
   }
 }
 
