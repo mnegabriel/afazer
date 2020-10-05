@@ -28,7 +28,14 @@ export interface AppLogicProps {
   };
   modalLogic: {
     modalIsOpen: boolean;
-    toggleModal: () => void;
+    modalId: number;
+    modalTitle: string;
+    setModalTitle: (title: string) => void;
+    modalDescription: string;
+    setModalDescription: (description: string) => void;
+    openModal: (id: number) => void;
+    closeModal: () => void;
+    applySave: (newData: Omit<ItemProps, 'checked'>) => void;
   };
 }
 
@@ -39,6 +46,11 @@ export interface TodoItemProps {
     modalIsOpen: boolean;
     toggleModal: () => void;
   };
+  children?: React.ReactNode;
+}
+
+export interface ModalProps {
+  isOpen: boolean;
   children?: React.ReactNode;
 }
 

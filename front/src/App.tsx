@@ -7,6 +7,14 @@ const App: React.FunctionComponent = () => {
   const [listData, setListData] = useState<ItemProps[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [confirmation, setConfirmation] = useState(false);
+  const [modalValues, setModalValues] = useState({
+    id: 0,
+    title: '',
+    description: '',
+  });
+  const [modalId, setModalId] = useState(0);
+  const [modalTitle, setModalTitle] = useState('');
+  const [modalDescription, setModalDescription] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   // Initial setup
@@ -84,11 +92,45 @@ const App: React.FunctionComponent = () => {
     setConfirmation(false);
   }
 
-  function toggleModal() {
-    setModalIsOpen(!modalIsOpen);
-  }
   // INPUT LOGIC ------ end -------------------------------
 
+  // MODAL LOGIC -----------------------------------------
+  function openModal(id: number) {
+    const selectedItem = listData.find(item => item.id === id);
+    if (selectedItem !== undefined) {
+      setModalValues({
+        id: selectedItem.id,
+        title: selectedItem.title,
+        description: selectedItem.description,
+      });
+      setModalId(selectedItem.id);
+      setModalTitle(selectedItem.title);
+      setModalDescription(selectedItem.description);
+      setModalIsOpen(true);
+    }
+  }
+
+  function closeModal() {
+    setModalIsOpen(false);
+    setModalId(0);
+    setModalTitle('');
+    setModalDescription('');
+  }
+
+  function applySave(newData: Omit<ItemProps, 'checked'>) {
+    const selectedItem = listData.find(item => item.id === newData.id);
+    if (selectedItem !== undefined) {
+      if (
+        selectedItem.title !== newData.title ||
+        selectedItem.description !== newData.description
+      ) {
+        handleUpdate(newData);
+      }
+    }
+    closeModal();
+  }
+
+  // MODAL LOGIC ----- end -------------------------------
   //
   return (
     <Layout
@@ -106,7 +148,17 @@ const App: React.FunctionComponent = () => {
         setConfirmation,
         confirmRemoval,
       }}
-      modalLogic={{ modalIsOpen, toggleModal }}
+      modalLogic={{
+        modalIsOpen,
+        modalId,
+        modalTitle,
+        setModalTitle,
+        modalDescription,
+        setModalDescription,
+        openModal,
+        closeModal,
+        applySave,
+      }}
     />
   );
 };

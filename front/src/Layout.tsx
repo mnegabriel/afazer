@@ -28,7 +28,7 @@ import './styles/styling.css';
 
 const Layout: React.FunctionComponent<AppLogicProps> = ({
   listData,
-  todoListLogic: { handleCheck, handleRemove, handleUpdate },
+  todoListLogic: { handleCheck, handleRemove },
   inputLogic: {
     inputValue,
     setInputValue,
@@ -37,7 +37,17 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
     setConfirmation,
     confirmRemoval,
   },
-  modalLogic: { modalIsOpen, toggleModal },
+  modalLogic: {
+    modalIsOpen,
+    modalId,
+    modalTitle,
+    setModalTitle,
+    modalDescription,
+    setModalDescription,
+    openModal,
+    closeModal,
+    applySave,
+  },
 }: AppLogicProps) => (
   <>
     <Afazer classes="">
@@ -63,26 +73,43 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
 
                 <p>{title}</p>
 
-                <Button clickBtn={() => toggleModal()} child={<EditIcon />} />
+                <Button clickBtn={() => openModal(id)} child={<EditIcon />} />
 
                 <Button
                   clickBtn={() => handleRemove(id)}
                   child={<TrashIcon />}
                 />
-
-                {modalIsOpen && (
-                  <ModalTodo
-                    itemProps={{
-                      item,
-                      handleUpdate,
-                      modalIsOpen,
-                      toggleModal,
-                    }}
-                  />
-                )}
               </TodoItem>
             );
           })}
+
+          <ModalTodo isOpen={modalIsOpen}>
+            <Input thisValue={modalTitle} changeValue={setModalTitle} />
+
+            <textarea
+              placeholder="Add a description here..."
+              value={modalDescription}
+              onChange={e => setModalDescription(e.target.value)}
+            />
+
+            <Button
+              idBtn="save"
+              clickBtn={() =>
+                applySave({
+                  id: modalId,
+                  title: modalTitle,
+                  description: modalDescription,
+                })
+              }
+              child={<p>Save</p>}
+            />
+
+            <Button
+              idBtn="close"
+              clickBtn={() => closeModal()}
+              child={<p>Close</p>}
+            />
+          </ModalTodo>
         </TodoList>
 
         <AddItemInput classes="">
