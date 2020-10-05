@@ -24,6 +24,8 @@ import {
 //
 import { AppLogicProps } from './Interfaces';
 
+import './styles/styling.css';
+
 const Layout: React.FunctionComponent<AppLogicProps> = ({
   listData,
   todoListLogic: { handleCheck, handleRemove, handleUpdate },
@@ -52,7 +54,7 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
             return (
               <TodoItem
                 key={id}
-                classes={!checked ? 'todo__item' : 'todo__item checked'}
+                classes={!checked ? 'todoitem' : 'todoitem checked'}
               >
                 <Checkbox
                   ticked={checked}
