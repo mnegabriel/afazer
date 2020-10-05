@@ -14,8 +14,8 @@
   --gray5: #E0E0E0;
   --gray6: #F2F2F2;
   --red: #EB5757;
-  --orange:#F2994A;
-  --yellow:#F2C94C;
+  --orange: #F2994A;
+  --yellow: #F2C94C;
   --green1: #219653;
   --green2: #27AE60;
   --green3: #6FCF97;
@@ -46,6 +46,7 @@ body, input, button {
 button {
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 button span {
@@ -114,5 +115,9 @@ main {
 .checked .todoitem__bg {
   width: 0;
   border-left: 4px solid #5e1c9b;
+}
+
+.modal {
+  z-index: 100;
 }
 /*# sourceMappingURL=styling.css.map */

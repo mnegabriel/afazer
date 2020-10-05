@@ -1,37 +1,37 @@
 .todoitem{
-  position: relative;
+  position              : relative;
 
   &__content {
-    display: flex;
-    justify-content: space-between;
+    display             : flex;
+    justify-content     : space-between;
     align-items: center;
-    gap: 15px;
-    padding:8px 12px;
-    margin-bottom: 10px;
-    position: relative;
-    z-index:3;
+    gap                 : 15px;
+    padding             : 8px 12px;
+    margin-bottom       : 10px;
+    position            : relative;
+    z-index             : 3;
     p {
-      flex: 1;
-      line-break: anywhere;
+      flex              : 1;
+      line-break        : anywhere;
     }
   }
 
   &__bg {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-left: 19px solid var(--purple1);
-    width:100%;
-    height:100%;
-    position:absolute;
-    top:0;
-    left:0;
-    z-index: 2;
-    transition: .3s ease;
+    background-color    : rgba(255, 255, 255, 0.1);
+    border-left         : 19px solid var(--purple1);
+    width               : 100%;
+    height              : 100%;
+    position            : absolute;
+    top                 : 0;
+    left                : 0;
+    z-index             : 2;
+    transition          : .3s ease;
   }
 }
 
 .checked {
   .todoitem__bg {
-    width: 0;
-    border-left: 4px solid scale-color($col-purple, $lightness: -40%);
+    width               : 0;
+    border-left         : 4px solid scale-color($col-purple, $lightness: -40%);
   }
 }
