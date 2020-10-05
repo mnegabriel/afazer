@@ -149,35 +149,19 @@ main {
   right: 0;
   -webkit-transition: .3s ease;
   transition: .3s ease;
+  padding: 30px;
   display: -ms-grid;
   display: grid;
-      grid-template-areas: "title title" "desc desc" "desc desc" "desc desc" "btns btns";
-  padding: 30px;
-}
-
-.modal .title {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-area: title;
-}
-
-.modal .description {
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 3;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-area: desc;
-}
-
-.modal .buttons {
-  -ms-grid-row: 5;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-area: btns;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  -ms-grid-rows: (1fr)[5];
+      grid-template-rows: repeat(5, 1fr);
 }
 
 .modal * {
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+  grid-column-end: 3;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -207,6 +191,24 @@ main {
           transition-delay: 0;
 }
 
+.title {
+  -ms-grid-row: 1;
+      grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.description {
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  grid-row-end: 5;
+}
+
+.buttons {
+  -ms-grid-row: 5;
+      grid-row-start: 5;
+  grid-row-end: 6;
+}
+
 .title,
 .description {
   -webkit-box-orient: vertical;
@@ -223,8 +225,8 @@ main {
   opacity: .5;
 }
 
-.title *:last-child,
-.description *:last-child {
+.title textarea,
+.description textarea {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -236,6 +238,9 @@ main {
 
 .buttons {
   gap: 40px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .buttons * {
@@ -245,7 +250,7 @@ main {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  height: 100%;
+  height: 50%;
 }
 
 .buttons #close {

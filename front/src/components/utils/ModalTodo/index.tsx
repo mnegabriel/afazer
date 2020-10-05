@@ -10,7 +10,9 @@ const ModalTodo: React.FunctionComponent<ModalProps> = ({
   isOpen,
   children,
 }: ModalProps) => {
-  return <div className={isOpen ? 'modal opened' : 'modal'}>{children}</div>;
+  return (
+    <section className={isOpen ? 'modal opened' : 'modal'}>{children}</section>
+  );
 };
 
 export default ModalTodo;
