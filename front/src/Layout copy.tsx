@@ -122,35 +122,44 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
         </ModalTodo>
 
         <AddItemInput classes="additem">
-          <div className={confirmation ? '' : 'active'}>
-            <Input
-              thisValue={inputValue}
-              changeValue={setInputValue}
-              enterKeyFunction={addItem}
-            />
-            <Button idBtn="add-btn" clickBtn={addItem} child={<AddIcon />} />
+          {
+            // all AddItemInput Buttons
+            !confirmation ? (
+              <>
+                <Input
+                  thisValue={inputValue}
+                  changeValue={setInputValue}
+                  enterKeyFunction={addItem}
+                />
+                <Button
+                  idBtn="add-btn"
+                  clickBtn={addItem}
+                  child={<AddIcon />}
+                />
 
-            <Button
-              idBtn="rmv-checked-btn"
-              clickBtn={() => setConfirmation(true)}
-              child={<TrashIcon />}
-            />
-          </div>
+                <Button
+                  idBtn="rmv-checked-btn"
+                  clickBtn={() => setConfirmation(true)}
+                  child={<TrashIcon />}
+                />
+              </>
+            ) : (
+              <>
+                <h4>REMOVE ALL CHECKED?</h4>
+                <Button
+                  idBtn="confirm-btn"
+                  clickBtn={confirmRemoval}
+                  child={<ThumbsUpIcon />}
+                />
 
-          <div className={confirmation ? 'active' : ''}>
-            <h4>REMOVE ALL CHECKED?</h4>
-            <Button
-              idBtn="confirm-btn"
-              clickBtn={confirmRemoval}
-              child={<ThumbsUpIcon />}
-            />
-
-            <Button
-              idBtn="decline-btn"
-              clickBtn={() => setConfirmation(false)}
-              child={<ThumbsUpIcon />}
-            />
-          </div>
+                <Button
+                  idBtn="decline-btn"
+                  clickBtn={() => setConfirmation(false)}
+                  child={<ThumbsUpIcon />}
+                />
+              </>
+            )
+          }
         </AddItemInput>
       </Main>
 
