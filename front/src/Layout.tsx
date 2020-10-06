@@ -58,7 +58,7 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
       </Header>
 
       <Main classes="">
-        <TodoList classes="">
+        <TodoList classes="todolist">
           {listData.map(item => {
             const { id, title, checked } = item;
             return (
@@ -115,23 +115,22 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
                   id: modalId,
                   title: modalTitle,
                   description: modalDescription,
-                })
-              }
+                })}
               child={<p>Save</p>}
             />
           </div>
         </ModalTodo>
 
         <AddItemInput classes="additem">
-          <Input
-            thisValue={inputValue}
-            changeValue={setInputValue}
-            enterKeyFunction={addItem}
-          />
           {
             // all AddItemInput Buttons
             !confirmation ? (
               <>
+                <Input
+                  thisValue={inputValue}
+                  changeValue={setInputValue}
+                  enterKeyFunction={addItem}
+                />
                 <Button
                   idBtn="add-btn"
                   clickBtn={addItem}
@@ -146,6 +145,7 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
               </>
             ) : (
               <>
+                <h4>REMOVE ALL CHECKED?</h4>
                 <Button
                   idBtn="confirm-btn"
                   clickBtn={confirmRemoval}
@@ -157,8 +157,6 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
                   clickBtn={() => setConfirmation(false)}
                   child={<ThumbsUpIcon />}
                 />
-
-                <h4>REMOVE ALL CHECKED?</h4>
               </>
             )
           }
