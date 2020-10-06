@@ -21,6 +21,16 @@ const App: React.FunctionComponent = () => {
   useEffect(() => {
     if (Object.prototype.hasOwnProperty.call(localStorage, 'listData')) {
       setListData(JSON.parse(localStorage.getItem('listData') || '{}'));
+    } else {
+      setListData([
+        {
+          id: 0,
+          title: 'click here for more info!',
+          checked: false,
+          description:
+            'you can edit this text in the pencil icon on the right of the todo item.',
+        },
+      ]);
     }
   }, []);
 

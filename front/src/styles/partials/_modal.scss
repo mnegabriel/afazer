@@ -32,13 +32,11 @@
   border-left             : 5px solid var(--purple1);
   visibility              : visible;
   transition              : .3s ease;
-  transition-delay        : .2s;
   * {
     opacity               : 1;
 
     transition            : .3s .4s ease;
     visibility            : visible;
-    transition-delay      : 0;
   }
 }
 
@@ -64,7 +62,8 @@
     border-bottom         : 3px solid rgba(255, 255, 255, 0.137);
     padding-bottom        : 8px;
     margin-bottom         : 10px;
-    opacity               : .5;
+    opacity               : .4;
+    font-size: 1.5rem;
   }
   textarea{
     flex                  : 1;
@@ -72,6 +71,13 @@
     color                 : white;
     border                : none;
     resize                : none;
+    font-size: 2rem;
+    border-bottom:0 solid $col-purple;
+    transition: .1s ease;
+
+    &:focus{
+      border-bottom:3px solid $col-purple;
+    }
   }
 }
 
@@ -83,12 +89,19 @@
     align-items           : center;
     width                 : 100%;
     height                : 50%;
+    transition: .3s ease;
   }
   #close{
-    border                : 1px solid gray
+    border                : 1px solid gray;
+    &:hover{
+      border                : 1px solid $col-purple;
+      color: $col-purple;
+    }
   }
   #save {
     background-color      : gray;
     color                 : black;
+    &:hover{ background-color      : $col-purple;  }
   }
+
 }

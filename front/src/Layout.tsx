@@ -60,25 +60,39 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
       <Main classes="">
         <TodoList classes="todolist">
           {listData.map(item => {
-            const { id, title, checked } = item;
+            const { id, title, checked, description } = item;
             return (
               <TodoItem
                 key={id}
                 classes={!checked ? 'todoitem' : 'todoitem checked'}
+                bgClass="todoitem__bg"
               >
-                <Checkbox
-                  ticked={checked}
-                  tickFunction={() => handleCheck(id)}
-                />
+                <details>
+                  <summary>
+                    <Checkbox
+                      ticked={checked}
+                      tickFunction={() => handleCheck(id)}
+                    />
 
-                <p>{title}</p>
+                    <p>{title}</p>
 
-                <Button clickBtn={() => openModal(id)} child={<EditIcon />} />
+                    <Button
+                      clickBtn={() => openModal(id)}
+                      child={<EditIcon />}
+                    />
 
-                <Button
-                  clickBtn={() => handleRemove(id)}
-                  child={<TrashIcon />}
-                />
+                    <Button
+                      clickBtn={() => handleRemove(id)}
+                      child={<TrashIcon />}
+                    />
+                    <div className="todoitem__bg" />
+                  </summary>
+
+                  <div className="todoitem__desc">
+                    <h5>{title}</h5>
+                    <p>{description}</p>
+                  </div>
+                </details>
               </TodoItem>
             );
           })}

@@ -53,6 +53,10 @@ button span {
   fill: var(--gray5);
 }
 
+button span:hover {
+  fill: #9B51E0;
+}
+
 @media (min-width: 700px) {
   :root {
     font-size: 90%;
@@ -75,11 +79,56 @@ main {
   margin-bottom: 55px;
 }
 
-.todoitem {
-  position: relative;
+@-webkit-keyframes sweep {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+    margin-left: -5px;
+    heigth: fit-content;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0;
+  }
 }
 
-.todoitem__content {
+@keyframes sweep {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+    margin-left: -5px;
+    heigth: fit-content;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0;
+  }
+}
+
+.todoitem {
+  position: relative;
+  margin-bottom: 10px;
+  -webkit-transition: background-color .3s ease;
+  transition: background-color .3s ease;
+}
+
+.todoitem details:not([open]) summary ~ div {
+  height: 0;
+}
+
+.todoitem details[open] summary ~ div {
+  -webkit-animation: sweep .2s ease-in-out;
+          animation: sweep .2s ease-in-out;
+}
+
+.todoitem summary {
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -91,16 +140,56 @@ main {
           align-items: center;
   gap: 15px;
   padding: 8px 12px;
-  margin-bottom: 10px;
   position: relative;
-  z-index: 3;
 }
 
-.todoitem__content p {
+.todoitem summary p {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  line-break: anywhere;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.todoitem summary *:not(:last-child) {
+  z-index: 3;
+}
+
+.todoitem:hover {
+  background-color: #ffffff08;
+}
+
+.todoitem__desc {
+  padding-left: 40px;
+  z-index: 4;
+}
+
+.todoitem__desc h5 {
+  color: #e0e0e0a1;
+  font-size: 1.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.295);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.todoitem__desc h5::before {
+  content: 'title';
+  position: absolute;
+  left: 2px;
+  background-color: #fff2;
+  font-size: .8rem;
+  padding: 2px 5px 3px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  top: 46px;
+}
+
+.todoitem__desc p {
+  color: #e0e0e070;
+  font-size: 1.3rem;
+  padding-bottom: 5px;
 }
 
 .todoitem__bg {
@@ -119,6 +208,18 @@ main {
 .checked .todoitem__bg {
   width: 0;
   border-left: 4px solid #5e1c9b;
+}
+
+@media (min-width: 700px) {
+  .todoitem__desc {
+    padding-left: 65px;
+  }
+  .todoitem__desc h5::before {
+    font-size: 1rem;
+    top: 57px;
+    left: 5px;
+    text-orientation: none;
+  }
 }
 
 .additem {
@@ -149,6 +250,11 @@ main {
   padding: 0 12px;
   background-color: inherit;
   border: 1px solid gray;
+}
+
+.additem input:focus {
+  border: 1px solid #9B51E0;
+  color: #9B51E0;
 }
 
 .additem button {
@@ -226,8 +332,6 @@ main {
   visibility: visible;
   -webkit-transition: .3s ease;
   transition: .3s ease;
-  -webkit-transition-delay: .2s;
-          transition-delay: .2s;
 }
 
 .opened * {
@@ -235,8 +339,6 @@ main {
   -webkit-transition: .3s .4s ease;
   transition: .3s .4s ease;
   visibility: visible;
-  -webkit-transition-delay: 0;
-          transition-delay: 0;
 }
 
 .title {
@@ -270,7 +372,8 @@ main {
   border-bottom: 3px solid rgba(255, 255, 255, 0.137);
   padding-bottom: 8px;
   margin-bottom: 10px;
-  opacity: .5;
+  opacity: .4;
+  font-size: 1.5rem;
 }
 
 .title textarea,
@@ -282,6 +385,15 @@ main {
   color: white;
   border: none;
   resize: none;
+  font-size: 2rem;
+  border-bottom: 0 solid #9B51E0;
+  -webkit-transition: .1s ease;
+  transition: .1s ease;
+}
+
+.title textarea:focus,
+.description textarea:focus {
+  border-bottom: 3px solid #9B51E0;
 }
 
 .buttons {
@@ -299,14 +411,25 @@ main {
           align-items: center;
   width: 100%;
   height: 50%;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
 }
 
 .buttons #close {
   border: 1px solid gray;
 }
 
+.buttons #close:hover {
+  border: 1px solid #9B51E0;
+  color: #9B51E0;
+}
+
 .buttons #save {
   background-color: gray;
   color: black;
+}
+
+.buttons #save:hover {
+  background-color: #9B51E0;
 }
 /*# sourceMappingURL=styling.css.map */

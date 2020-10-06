@@ -1,18 +1,85 @@
-.todoitem{
-  position              : relative;
 
-  &__content {
+@keyframes sweep {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  50%{
+    opacity: 0;
+    margin-left: -5px;
+    heigth: fit-content;
+  }
+  100%{
+    opacity: 1;
+    margin-left: 0;
+  }
+}
+
+.todoitem {
+  position              : relative;
+  margin-bottom       : 10px;
+  transition: background-color .3s ease;
+
+  details:not([open]) summary ~ div{ height: 0;}
+  details[open] summary ~ div{
+    animation: sweep .2s ease-in-out;
+  }
+
+  summary{
+    cursor: pointer;
     display             : flex;
     justify-content     : space-between;
     align-items: center;
     gap                 : 15px;
     padding             : 8px 12px;
-    margin-bottom       : 10px;
     position            : relative;
-    z-index             : 3;
+
     p {
       flex              : 1;
-      line-break        : anywhere;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    *:not(:last-child) {
+      z-index             : 3;
+    }
+  }
+
+  &:hover{
+    background-color: #ffffff08
+  }
+
+  &__desc {
+    padding-left:40px;
+    // background-color        : rgba(0, 0, 0, 0.849);
+    z-index: 4;
+
+    h5 {
+      color: #e0e0e0a1;
+      font-size: 1.6rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.295);
+      padding-top:5px;
+      padding-bottom:5px;
+      margin-bottom:5px;
+
+      &::before{
+        content: 'title';
+        position: absolute;
+        left: 2px;
+        background-color: #fff2;
+        font-size: .8rem;
+        padding: 2px 5px 3px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        top: 46px;
+      }
+    }
+
+    p{
+      color: #e0e0e070;
+      font-size: 1.3rem;
+      padding-bottom:5px;
     }
   }
 
@@ -33,5 +100,17 @@
   .todoitem__bg {
     width               : 0;
     border-left         : 4px solid scale-color($col-purple, $lightness: -40%);
+  }
+}
+
+@media (min-width:700px) {
+  .todoitem__desc {
+    padding-left: 65px;
+    & h5::before {
+      font-size: 1rem;
+      top:57px;
+      left: 5px;
+      text-orientation: none;
+    }
   }
 }

@@ -18,6 +18,10 @@
     padding: 0 12px;
     background-color      :inherit;
     border: 1px solid gray;
+    &:focus {
+      border: 1px solid $col-purple;
+      color: $col-purple;
+    }
   }
   button {
     padding: 0 20px;

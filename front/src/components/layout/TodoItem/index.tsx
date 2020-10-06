@@ -1,14 +1,19 @@
 import React from 'react';
 import { AppDiv } from '../../../Interfaces';
 
-const TodoItem: React.FunctionComponent<AppDiv> = ({
+interface TodoItem extends AppDiv {
+  bgClass: string;
+}
+
+const TodoItem: React.FunctionComponent<TodoItem> = ({
   children,
   classes,
-}: AppDiv) => {
+  bgClass,
+}: TodoItem) => {
   return (
     <div className={classes || ''}>
-      <div className="todoitem__content">{children}</div>
-      <div className="todoitem__bg" />
+      <div>{children}</div>
+      {/* <div className={bgClass} /> */}
     </div>
   );
 };
