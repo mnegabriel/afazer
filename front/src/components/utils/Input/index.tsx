@@ -1,15 +1,12 @@
 import React from 'react';
 
-interface InputProps {
-  thisValue: string;
-  changeValue: (newValue: string) => void;
-  enterKeyFunction?: () => void;
-}
+import { InputProps } from '../../../Interfaces';
 
 const Input: React.FunctionComponent<InputProps> = ({
   thisValue,
   changeValue,
   enterKeyFunction,
+  reference,
 }: InputProps) => {
   //
   const enterKeyPress: (
@@ -30,6 +27,7 @@ const Input: React.FunctionComponent<InputProps> = ({
       onChange={e => changeValue(e.target.value)}
       onKeyDown={e => enterKeyPress(e)}
       size={1}
+      ref={reference}
     />
   );
 };

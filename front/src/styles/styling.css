@@ -361,19 +361,26 @@ main {
 
 .title,
 .description {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  gap: 20px;
 }
 
 .title h2,
 .description h2 {
-  border-bottom: 3px solid rgba(255, 255, 255, 0.137);
-  padding-bottom: 8px;
-  margin-bottom: 10px;
-  opacity: .4;
-  font-size: 1.5rem;
+  border-top: 3px solid white;
+  color: black;
+  font-size: 3rem;
+  background-color: gray;
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  padding-top: 10px;
+  line-height: 1.8rem;
+  letter-spacing: .8rem;
+  font-family: Roboto, sans-serif;
+  text-transform: uppercase;
+  font-family: 'Kanit', sans-serif;
 }
 
 .title textarea,
@@ -389,11 +396,20 @@ main {
   border-bottom: 0 solid #9B51E0;
   -webkit-transition: .1s ease;
   transition: .1s ease;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.137);
 }
 
 .title textarea:focus,
 .description textarea:focus {
   border-bottom: 3px solid #9B51E0;
+}
+
+.title textarea {
+  margin-bottom: 10px;
+}
+
+.title h2 {
+  margin-bottom: 10px;
 }
 
 .buttons {

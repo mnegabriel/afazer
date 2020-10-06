@@ -36,6 +36,7 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
     confirmation,
     setConfirmation,
     confirmRemoval,
+    inputRef,
   },
   modalLogic: {
     modalIsOpen,
@@ -129,7 +130,8 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
                   id: modalId,
                   title: modalTitle,
                   description: modalDescription,
-                })}
+                })
+              }
               child={<p>Save</p>}
             />
           </div>
@@ -141,6 +143,7 @@ const Layout: React.FunctionComponent<AppLogicProps> = ({
               thisValue={inputValue}
               changeValue={setInputValue}
               enterKeyFunction={addItem}
+              reference={inputRef}
             />
             <Button idBtn="add-btn" clickBtn={addItem} child={<AddIcon />} />
 

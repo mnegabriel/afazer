@@ -57,13 +57,21 @@
 
 .title,
 .description{
-  flex-direction          : column;
+  // flex-direction          : column;
+  gap: 20px;
   h2 {
-    border-bottom         : 3px solid rgba(255, 255, 255, 0.137);
-    padding-bottom        : 8px;
-    margin-bottom         : 10px;
-    opacity               : .4;
-    font-size: 1.5rem;
+    border-top         : 3px solid rgb(255, 255, 255);
+    color: black;
+    font-size: 3rem;
+    background-color:  gray;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    padding-top: 10px;
+    line-height:1.8rem;
+    letter-spacing: .8rem;
+    font-family: Roboto, sans-serif;
+    text-transform: uppercase;
+    font-family: 'Kanit', sans-serif;
   }
   textarea{
     flex                  : 1;
@@ -74,10 +82,21 @@
     font-size: 2rem;
     border-bottom:0 solid $col-purple;
     transition: .1s ease;
+    border-bottom:2px solid rgba(255, 255, 255, 0.137);
 
     &:focus{
       border-bottom:3px solid $col-purple;
     }
+  }
+}
+
+.title {
+  textarea{
+  margin-bottom: 10px
+  }
+  h2{
+
+    margin-bottom         : 10px;
   }
 }
 

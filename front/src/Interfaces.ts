@@ -1,3 +1,5 @@
+import { RefObject, useRef } from 'react';
+
 export interface AppDiv {
   classes: string;
   children?: React.ReactNode;
@@ -25,6 +27,7 @@ export interface AppLogicProps {
     confirmation: boolean;
     setConfirmation: (confirmation: boolean) => void;
     confirmRemoval: () => void;
+    inputRef: RefObject<HTMLInputElement>;
   };
   modalLogic: {
     modalIsOpen: boolean;
@@ -47,6 +50,13 @@ export interface TodoItemProps {
     toggleModal: () => void;
   };
   children?: React.ReactNode;
+}
+
+export interface InputProps {
+  thisValue: string;
+  changeValue: (newValue: string) => void;
+  enterKeyFunction?: () => void;
+  reference: RefObject<HTMLInputElement>;
 }
 
 export interface ModalProps {

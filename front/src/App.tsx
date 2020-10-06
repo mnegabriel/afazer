@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Layout from './Layout';
 import { ItemProps } from './Interfaces';
 
@@ -16,6 +16,8 @@ const App: React.FunctionComponent = () => {
   const [modalTitle, setModalTitle] = useState('');
   const [modalDescription, setModalDescription] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Initial setup
   useEffect(() => {
@@ -94,6 +96,9 @@ const App: React.FunctionComponent = () => {
     if (inputValue !== '') {
       handleAdd(inputValue);
       setInputValue('');
+      if (inputRef && inputRef.current) {
+        inputRef.current.focus();
+      }
     }
   }
 
@@ -157,6 +162,7 @@ const App: React.FunctionComponent = () => {
         confirmation,
         setConfirmation,
         confirmRemoval,
+        inputRef,
       }}
       modalLogic={{
         modalIsOpen,
