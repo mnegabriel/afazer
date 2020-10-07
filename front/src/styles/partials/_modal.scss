@@ -57,52 +57,43 @@
 
 .title,
 .description{
-  // flex-direction          : column;
+  flex-direction          : column;
   gap: 20px;
   h2 {
-    border-top         : 3px solid rgb(255, 255, 255);
-    color: black;
-    font-size: 3rem;
-    background-color:  gray;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    padding-top: 10px;
-    line-height:1.8rem;
-    letter-spacing: .8rem;
-    font-family: Roboto, sans-serif;
-    text-transform: uppercase;
-    font-family: 'Kanit', sans-serif;
+    border-top            : 3px solid rgb(255, 255, 255);
+    color                 : black;
+    font-size             : 3rem;
+    background-color      :  gray;
+    padding-top           : 10px;
+    line-height           : 1.8rem;
+    letter-spacing        : .8rem;
+    text-transform        : uppercase;
+    font-family           : 'Kanit', sans-serif;
   }
   textarea{
     flex                  : 1;
-    background-color      : inherit;
+    background-color      : rgb(25, 25, 25);
     color                 : white;
     border                : none;
     resize                : none;
-    font-size: 2rem;
-    border-bottom:0 solid $col-purple;
-    transition: .1s ease;
-    border-bottom:2px solid rgba(255, 255, 255, 0.137);
+    font-size             : 2rem;
+    box-shadow            : inset 0px -2px 0 0px gray;
+    transition            : .1s ease;
+    padding: 5px;
 
     &:focus{
-      border-bottom:3px solid $col-purple;
+      box-shadow            : inset 0px -5px 0 0px $col-purple;
     }
   }
 }
 
 .title {
-  textarea{
-  margin-bottom: 10px
-  }
-  h2{
-
-    margin-bottom         : 10px;
-  }
+    margin-bottom         : 20px
 }
 
 .buttons{
   gap: 40px;
-  align-items           : center;
+  align-items             : center;
   * {
     justify-content       : space-around;
     align-items           : center;
@@ -113,14 +104,16 @@
   #close{
     border                : 1px solid gray;
     &:hover{
-      border                : 1px solid $col-purple;
-      color: $col-purple;
+      border              : 1px solid $col-purple;
+      color               : $col-purple;
     }
   }
   #save {
     background-color      : gray;
     color                 : black;
-    &:hover{ background-color      : $col-purple;  }
+    &:hover{
+      background-color    : $col-purple;
+    }
   }
 
 }
