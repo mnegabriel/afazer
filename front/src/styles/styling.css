@@ -381,6 +381,7 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 20px;
+  width: 100%;
 }
 
 .title h2,
@@ -389,9 +390,9 @@ main {
   color: black;
   font-size: 3rem;
   background-color: gray;
-  padding-top: 10px;
+  padding-top: 7px;
   line-height: 1.8rem;
-  letter-spacing: .8rem;
+  letter-spacing: .6rem;
   text-transform: uppercase;
   font-family: 'Kanit', sans-serif;
 }
