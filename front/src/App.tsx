@@ -7,11 +7,11 @@ const App: React.FunctionComponent = () => {
   const [listData, setListData] = useState<ItemProps[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [confirmation, setConfirmation] = useState(false);
-  const [modalValues, setModalValues] = useState({
-    id: 0,
-    title: '',
-    description: '',
-  });
+  // const [modalValues, setModalValues] = useState({
+  //   id: 0,
+  //   title: '',
+  //   description: '',
+  // });
   const [modalId, setModalId] = useState(0);
   const [modalTitle, setModalTitle] = useState('');
   const [modalDescription, setModalDescription] = useState('');
@@ -113,11 +113,11 @@ const App: React.FunctionComponent = () => {
   function openModal(id: number) {
     const selectedItem = listData.find(item => item.id === id);
     if (selectedItem !== undefined) {
-      setModalValues({
-        id: selectedItem.id,
-        title: selectedItem.title,
-        description: selectedItem.description,
-      });
+      // setModalValues({
+      //   id: selectedItem.id,
+      //   title: selectedItem.title,
+      //   description: selectedItem.description,
+      // });
       setModalId(selectedItem.id);
       setModalTitle(selectedItem.title);
       setModalDescription(selectedItem.description);

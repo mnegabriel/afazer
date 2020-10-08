@@ -1,4 +1,4 @@
-$col-purple       :#9B51E0;
+$col-purple       : #9B51E0;
 
 * {
   margin          : 0;
@@ -26,7 +26,7 @@ $col-purple       :#9B51E0;
   --purple1       : #9B51E0;
   --purple2       : #BB6BD9;
   /*  */
-  --font          :'Kodchasan', sans-serif;
+  --font          : 'Kodchasan', sans-serif;
   --font-accent   : 'Yatra One', cursive;
   font-size       : 65%;
 }
@@ -37,6 +37,7 @@ html, body, #root{
 
 #root {
   background      : var(--gray1);
+  overflow-x      : hidden;
 }
 
 body, input, button {
@@ -47,11 +48,11 @@ body, input, button {
 button{
   background: none;
   border          : none;
-  cursor          :pointer;
+  cursor          : pointer;
   span {
     fill          : var(--gray5);
     &:hover{
-      fill: $col-purple;
+      fill        : $col-purple;
     }
   }
 }
